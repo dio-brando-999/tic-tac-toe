@@ -1,0 +1,8 @@
+Step-by-Step Tic-Tac-Toe Implementation
+Create the Game Board: Use a 3x3 grid represented by a list of lists.
+Display the Board: Write a function to print the grid.
+Player Input: Allow players to input their moves.
+Check for Winner: Write logic to determine if a player has won.
+Switch Players: Alternate between player "X" and player "O".
+Handle Invalid Moves: Ensure players cannot place marks on an already filled spot.
+Detect a Draw: If all spots are filled and no one has won, declare a draw.
