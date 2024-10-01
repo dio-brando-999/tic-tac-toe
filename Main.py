@@ -22,31 +22,41 @@ def main():
         outputO(grid,o)
         for row in grid:
             print(row)
-    print(check(grid)+"won!")
+    print(check(grid)+" won!")
 
 #prompts and returns the value of where P1 wants to place
 def player1Input():
-    x = input("Player 1:")
-    return x
+    x= 11
+    while(not 0<int(x)<10):
+        x = input("Player 1:")
+        if(not x.isdigit()):
+            print("why")
+            x = 11
+    return int(x)-1
 #prompts and returns the value of where P2 wants to place
 def player2Input():
-    o = input("Player 2:")
-    return o
+    o= 11
+    while(not 0<int(o)<10):
+        o = input("Player 2:")
+        if(not o.isdigit()):
+            print("")
+            o = 11
+    return int(o)-1
 
 #changes grid to display "X" based on P1's input
 def outputX(grid,x):
-    grid[x/3][x%3] = "X"
+    grid[x//3][x%3] = "X"
 
 #changes grid to display "O" based on P2's input
 def outputO(grid,o):
-    grid[o/3][o%3] = "O"
+    grid[o//3][o%3] = "O"
 
 #checks for any winning case. Returns letter of winner, indicting which player won
 def check(grid):
     #check row
     for row in grid:
         if(row[0]==row[1]==row[2]):
-            return grid[row]
+            return row[0]
     #check columns
     for col in range(3):
         if(grid[0][col]==grid[1][col]==grid[2][col]):
@@ -59,3 +69,6 @@ def check(grid):
     return None
 
 main()
+
+#add a check input to make sure inputs are numbers 1-9
+#add a check so that indicies can not be changed by retyping the grid's index
