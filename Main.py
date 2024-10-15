@@ -8,21 +8,21 @@ def main():
     for row in grid:
         print(row)
     print("Player 1 is X, Player 2 is O")
-    inGame = True
-    while inGame:
-        if(check(grid)!= None):
-            break
-        x = player1Input() 
+    checker = None
+    while checker==None:
+        x = player1Input()
         outputX(grid,x)
         for row in grid:
             print(row)
-        if(check(grid)!= None):
+        checker=check(grid)
+        if(checker != None):
             break
         o = player2Input()
         outputO(grid,o)
         for row in grid:
             print(row)
-    print(check(grid)+" won!")
+        checker=check(grid)
+    print(checker + " won!" if(checker == "X" or checker == "O") else "tie")
 
 #prompts and returns the value of where P1 wants to place
 def player1Input():
@@ -45,10 +45,14 @@ def player2Input():
 
 #changes grid to display "X" based on P1's input
 def outputX(grid,x):
-    grid[x//3][x%3] = "X"
+    while grid[x//3][x%3]=="X" or grid[x//3][x%3]=="O":
+        x = player1Input()
+    grid[x//3][x%3] = "X"     
 
 #changes grid to display "O" based on P2's input
 def outputO(grid,o):
+    while grid[o//3][o%3]=="X" or grid[o//3][o%3]=="O":
+        o = player2Input()
     grid[o//3][o%3] = "O"
 
 #checks for any winning case. Returns letter of winner, indicting which player won
@@ -66,9 +70,11 @@ def check(grid):
         return grid[0][0]
     if(grid[0][2]==grid[1][1]==grid[2][0]):
         return grid[0][2]
-    return None
+    for row in grid:
+        for col in row:
+            if(isinstance(col,int)):
+                return
+    return "tie"        
+
 
 main()
-
-#add a check so that indicies can not be changed by retyping the grid's index
-#add a check if game ends in tie
