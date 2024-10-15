@@ -70,5 +70,5 @@ def check(grid):
 
 main()
 
-#add a check input to make sure inputs are numbers 1-9
 #add a check so that indicies can not be changed by retyping the grid's index
+#add a check if game ends in tie
